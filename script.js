@@ -176,3 +176,14 @@ function render(first){
  const e=$('end');const wasHidden=e.classList.contains('hide');e.classList.toggle('hide',!S.over);if(S.over&&wasHidden)anim(e,'popin');
  if(S.over){const w=S.gw[0]>S.gw[1]?0:1;e.innerHTML=`<h2>🏆 ${esc(S.team[w])} wins!</h2>${S.best>1?`<div>Games ${S.gw[0]} – ${S.gw[1]}</div><div style="color:var(--mut);font-size:13px;margin-top:4px">${S.games.map(g=>g[0]+'-'+g[1]).join(' • ')}</div>`:`<div>${S.score[0]} – ${S.score[1]}</div>`}<div class="row" style="margin-top:16px"><button class="btn" onclick="rematch()">🔁 Rematch<br><small style="font-weight:400;font-size:12px">same teams</small></button><button class="btn" style="background:var(--b)" onclick="newSetup()">🆕 New match<br><small style="font-weight:400;font-size:12px">change setup</small></button></div>`}
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const ua = navigator.userAgent || '';
+  const inApp = /FBAN|FBAV|FB_IAB|Messenger|Instagram|Line\/|Snapchat/i.test(ua);
+  if (!inApp) return;
+
+  const bar = document.createElement('div');
+  bar.textContent = 'To save/export files, open this page in Chrome or Safari (tap ⋮ or ⋯ → Open in browser).';
+  bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;padding:10px 14px;background:#f59e0b;color:#000;font:14px sans-serif;text-align:center';
+  document.body.appendChild(bar);
+});
